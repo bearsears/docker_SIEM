@@ -14,12 +14,10 @@ volumes:
   logstashdata01:
     driver: local
 
-
 networks:
   default:
     name: elastic
     external: false
-
 
 services:
   setup:
@@ -216,3 +214,6 @@ services:
       - ELASTIC_USER=elastic
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - ELASTIC_HOSTS=https://es01:9200
+  
+  wireshark01:
+    image: linuxserver/wireshark:logstash_ingest_data
