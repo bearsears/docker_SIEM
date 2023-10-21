@@ -216,4 +216,20 @@ services:
       - ELASTIC_HOSTS=https://es01:9200
   
   wireshark01:
-    image: linuxserver/wireshark:logstash_ingest_data
+    image: linuxserver/wireshark:latest
+    cap_add: 
+      - NET_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    #network is already defined..
+    volumes:
+      - /path/to/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/GMT-7
+    ports:
+      - ${WIRESHARK}:3000
+    # not sure i need this port below
+    #  - 3001:3001
+    restart: unless-stopped
