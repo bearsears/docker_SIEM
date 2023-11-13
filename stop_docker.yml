@@ -1,0 +1,16 @@
+---
+- name: stop docker 
+  hosts: vm_host
+  become: yes
+
+  tasks:
+    # - name: stop alpine
+    #   docker_container:
+    #     name: alpine_container
+    #     state: absent
+    
+    - name: navigate to the folder, run docker-compose
+      ansible.builtin.shell: |
+        cd /home/steven/docker_SIEM
+        docker-compose down 
+        exit 0

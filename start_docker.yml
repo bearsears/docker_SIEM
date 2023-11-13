@@ -1,0 +1,53 @@
+---
+- name: download from github, set docker-compose, 
+  hosts: vm_host
+  become: yes
+
+  tasks:
+    - name: update git repository
+      ansible.builtin.git:
+        repo: https://github.com/bearsears/docker_SIEM
+        dest: /home/steven/docker_SIEM/
+      # pull and update is true by default, 
+      # i should leave it at that
+        single_branch: yes
+        version: main
+    
+    - name: update and clean
+      ansible.builtin.apt: 
+        update-cache: true
+        upgrade: "yes"
+        autoremove: true
+        autoclean: true
+        clean: true
+        cache_valid_time: 1800
+        
+    # - name: navigate to the folder, run docker-compose
+    #   ansible.builtin.shell: |
+    #     cd /home/steven/docker_SIEM
+    #     docker-compose up -d
+    #     exit 0
+    
+    # - name: copy file to the remote
+    #   ansible.builtin.copy:
+    #     src: /home/hapihacker/docker_SIEM/randam.txt
+    #     dest: /home/steven/docker_SIEM/
+    #     owner: steven
+    #     group: steven
+    #     mode: "0644"
+
+
+    # - name: Pull the alpine image
+    #   docker_image:
+    #     name: alpine:latest
+    #     source: pull
+    #     state: present
+    
+    # - name: Start the alpine container                                        
+    #   docker_container:
+    #     name: alpine_container
+    #     image: alpine:latest
+    #     state: started
+    #     interactive: yes
+    #     command: sh
+      
