@@ -21,7 +21,13 @@
         autoclean: true
         clean: true
         cache_valid_time: 1800
-        
+
+    - name: install a folder inside the vm_host
+      ansible.builtin.file:
+        path: /home/test_folder
+        state: directory
+        mode : '0755'
+
     # - name: navigate to the folder, run docker-compose
     #   ansible.builtin.shell: |
     #     cd /home/steven/docker_SIEM

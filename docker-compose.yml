@@ -18,6 +18,9 @@ networks:
   default:
     name: elastic
     external: false
+  wireshark:
+    driver: bridge
+    external: true
 
 services:
   setup:
@@ -221,7 +224,9 @@ services:
       - NET_ADMIN
     security_opt:
       - seccomp:unconfined
-    #network is already defined..
+    #separate network is required,
+    networks:
+      - wireshark
     volumes:
       - /path/to/config:/config
     environment:
