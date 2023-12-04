@@ -7,7 +7,7 @@
     - name: update git repository
       ansible.builtin.git:
         repo: https://github.com/bearsears/docker_SIEM
-        dest: /home/steven/docker_SIEM/
+        dest: /home/dickface/docker_SIEM/
       # pull and update is true by default, 
       # i should leave it at that
         single_branch: yes
@@ -24,16 +24,16 @@
         
     # - name: navigate to the folder, run docker-compose
     #   ansible.builtin.shell: |
-    #     cd /home/steven/docker_SIEM
+    #     cd /home/dickface/docker_SIEM
     #     docker-compose up -d
     #     exit 0
     
     # - name: copy file to the remote
     #   ansible.builtin.copy:
     #     src: /home/hapihacker/docker_SIEM/randam.txt
-    #     dest: /home/steven/docker_SIEM/
-    #     owner: steven
-    #     group: steven
+    #     dest: /home/dickface/docker_SIEM/
+    #     owner: dickface
+    #     group: dickface
     #     mode: "0644"
 
 
@@ -50,4 +50,11 @@
     #     state: started
     #     interactive: yes
     #     command: sh
-      
+
+    # - name: Create a new folder
+    #   ansible.builtin.file:
+    #     path: /home/dickface/new_folder
+    #     owner: dickface
+    #     group: dickface
+    #     mode: "0755"
+    
