@@ -4,14 +4,14 @@
   become: yes
 
   tasks:
-    - name: update git repository
-      ansible.builtin.git:
-        repo: https://github.com/bearsears/docker_SIEM
-        dest: /home/steven/docker_SIEM/
-      # pull and update is true by default, 
-      # i should leave it at that
-        single_branch: yes
-        version: main
+    # - name: update git repository
+    #   ansible.builtin.git:
+    #     repo: https://github.com/bearsears/docker_SIEM
+    #     dest: /home/steven/docker_SIEM/
+    #   # pull and update is true by default, 
+    #   # i should leave it at that
+    #     single_branch: yes
+    #     version: main
     
     - name: update and clean
       ansible.builtin.apt: 

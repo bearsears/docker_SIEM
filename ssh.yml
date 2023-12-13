@@ -1,0 +1,17 @@
+---
+- name: Deploy SSH key
+  hosts: ssh_host
+  become: yes
+
+  tasks: 
+    - name: ensure SSH directory exists
+      ansible.builtin.file:
+        path: ~/.ssh"
+        state: directory
+        mode: "0700"
+    
+    - name: ssh key deployment
+      ansible.posix.authorized_key:
+        user: client0001
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    
